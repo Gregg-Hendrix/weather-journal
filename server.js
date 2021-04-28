@@ -2,18 +2,41 @@
 projectData = {};
 
 // Require Express to run server and routes
-
+const express = require("express");
 // Start up an instance of app
+const app = express();
+// Initialize Body Purchaser
+const bodyParser = require("body-parser");
 
 /* Middleware*/
 //Here we are configuring express to use body-parser as middle-ware.
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+
 // Cors for cross origin allowance
+const cors = require("cors")
+app.use(cors());
 
 // Initialize the main project folder
-app.use(express.static('website'));
+app.use(express.static("website"));
 
 
 // Setup Server
+const host = "localhost"
+const port = 8000;
+let server = app.listen(port, listening);
+function listening(){
+  console.log("server running");
+  console.log("running on localhost: ${port}");
+}
+// Get Request
+app.get("/", function (req, res){
+  res.send(projectData);
+});
+
+// Post Request
+
+app.post("/", function(req, res){
+  projectData = req.body;
+});
