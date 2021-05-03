@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 
 
 // Cors for cross origin allowance
-const cors = require("cors")
+const cors = require("cors");
 app.use(cors());
 
 // Initialize the main project folder
@@ -23,20 +23,22 @@ app.use(express.static("website"));
 
 
 // Setup Server
-const host = "localhost"
+const host = "localhost";
 const port = 8000;
-let server = app.listen(port, listening);
+let server = app.listen(port, host, listening);
 function listening(){
   console.log("server running");
   console.log("running on localhost: ${port}");
 }
-// Get Request
-app.get("/", function (req, res){
+// GET Request
+app.get("/weather", function (req, res){
+  projectData = "foo"
   res.send(projectData);
 });
 
-// Post Request
+// POST Request
 
-app.post("/", function(req, res){
+app.post("/weather", function(req, res){
   projectData = req.body;
+  res.send(projectData);
 });
